@@ -35,18 +35,19 @@ public class SecurityConfig {
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // ✅ allow public routes
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/uploads/**").permitAll()
-
-                        // ✅ TEMP FIX FOR YOUR TEST
-                        .requestMatchers("/test").permitAll()
-
-                        // 🔒 all others require auth
-                        .anyRequest().authenticated()
-                )
+//                        // ✅ allow public routes
+//                        .requestMatchers("/api/auth/**").permitAll()
+//                        .requestMatchers("/uploads/**").permitAll()
+//
+//                        // ✅ TEMP FIX FOR YOUR TEST
+//                        .requestMatchers("/test").permitAll()
+//
+//                        // 🔒 all others require auth
+//                        .anyRequest().authenticated()
+                                .anyRequest().permitAll()
+                );
                 // ✅ JWT filter
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                //.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
